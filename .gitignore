@@ -1,0 +1,6 @@
+.htaccess
+local.php
+.DS_Store
+.env
+data/cacert.pem
+lib/aws
