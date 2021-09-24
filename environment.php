@@ -15,5 +15,8 @@ if (boolval(getenv('DEBUG'))) {
 define('PP_ENABLED', getenv('PP_ENABLED'));
 define('CBLOG_ENABLED', getenv('CBLOG_ENABLED'));
 
+define('AWS_BUCKET', getenv('AWS_BUCKET'));
+define('AWS_REGION', getenv('AWS_REGION'));
+
 define('TIMEZONE', getenv('TIMEZONE'));
 date_default_timezone_set(TIMEZONE);

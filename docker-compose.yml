@@ -16,9 +16,24 @@ services:
       BASE_URI: /
       CBLOG_ENABLED: ${CBLOG_ENABLED}
       PP_ENABLED: ${PP_ENABLED}
+      SOLR_CORE: mycore
+      SOLR_HOST: solr
+      SOLR_PORT: 8983
       TIMEZONE: ${TIMEZONE}
       XDEBUG_CONFIG: client_host=host.docker.internal
       XDEBUG_MODE: debug
       XDEBUG_SESSION: xdebug_session_for_RST
     ports:
       - ${APACHE_PORT}:80
+  solr:
+    image: solr:latest
+    #image: solr:8.5.1
+    volumes:
+      #- data:/opt/solr/server/solr/mycores
+      - ./data/solr/data:/var/solr/data
+    #environment:
+    #SOLR_HOME: /mysolrhome
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - mycore

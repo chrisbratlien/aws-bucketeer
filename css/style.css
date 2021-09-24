@@ -1,0 +1,54 @@
+.search-result .fa-download {
+  cursor: pointer;
+}
+.btn {
+  background: #eee;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 2px 5px;
+}
+.search-result {
+  border-bottom: 1px solid #3ca;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+.search-result label {
+  font-weight: bold;
+  margin: 3px;
+}
+
+.drop-target {
+  border: 2px dashed #ccc;
+  border-radius: 20px;
+  padding: 20px;
+}
+.drop-target.highlight {
+  border-color: #409;
+  background: #afa;
+}
+.explain {
+  border-left: 5px solid #3ca;
+  background: #eff;
+  color: #031;
+  margin-bottom: 5px;
+  min-height: 200px;
+  height: 100vh;
+  padding: 5px;
+}
+.explain a {
+  color: #031;
+}
+
+input[type="text"] {
+  padding: 3px;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+.big-number {
+  font-size: 30px;
+  font-weight: bold;
+}

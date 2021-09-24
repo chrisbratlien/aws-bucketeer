@@ -4,3 +4,15 @@ local.php
 .env
 data/cacert.pem
 lib/aws
+data/
+cbtest.php
+
+# solr
+/data/solr/*
+!/data/solr/data
+
+/data/solr/data/*
+!/data/solr/data/mycore
+
+/data/solr/data/mycore/*
+!/data/solr/data/mycore/conf

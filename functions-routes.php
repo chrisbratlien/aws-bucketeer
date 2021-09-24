@@ -1,33 +1,41 @@
 <?php
 
-add_route('/api/milk/{percent}', function ($percent) {
+add_route('/upload', function () {
+  ////return pr($_FILES, 'files??');
+
+  if (empty($_FILES)) {
+    error_header(401, 'No File');
+  }
+  $file_meta = $_FILES['file'];
+  $src = $file_meta['tmp_name'];
+  $res = organize_file($src, $file_meta); //[error, result] format
+
+  //Q: should this return an error_header if the error is populated? 
+  //Q: or should it just consistently return a 200 with
+  // an [error, result] JSON payload for the API caller to sort out?
   header('Content-Type: application/json');
-  echo json_encode([
-    'msg' => "you requested $percent% milk"
-  ]);
+  echo json_encode($res);
 });
 
 
-add_route('/milk/{percent}', function ($percent) {
-  //pp($percent, 'you requested this percent');
-  echo "you requested $percent% milk";
+
+add_route('/solr-search', function () {
+  $opts = $_GET;
+  //FIXME: change solr to the ENV variable for the solr host?
+  $base_url = 'http://solr:8983/solr/mycore';
+  $query_string = urlencode($opts['q']);
+  $full = "${base_url}/select?q=${query_string}";
+  $json = file_get_contents($full);
+  header('Content-Type: application/json');
+  echo $json;
 });
 
-
-//requires functions-curl.php
-add_route('/third-party-api', function () {
-
-  //[$status, $headers, $body, $error] = curl_get('https://awesome-third-party-api');
-  //pp([$status, $headers, $body, $error], 'what I got back');
+//attachment
+add_route('/asset/{sha256}', function ($sha256) {
+  serve_asset($sha256, ['attachment' => true]);
 });
 
-add_route('/test-aws', function () {
-
-  $bucket = getenv('AWS_BUCKET');
-  //write
-  //file_put_contents("s3://${bucket}/hello", 'Hello!');
-
-  //read
-  $data = file_get_contents("s3://${bucket}/hello");
-  pp($data, 'data');
+//inline
+add_route('/inline/{sha256}', function ($sha256) {
+  serve_asset($sha256, ['attachment' => false]);
 });
