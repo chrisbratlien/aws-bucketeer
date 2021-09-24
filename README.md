@@ -4,9 +4,11 @@ Learning AWS Buckets with [Weepy](https://github.com/chrisbratlien/weepy)
 
 Building a multi-container app to:
 
-- Index binary file (PDF, MP3) metadata, including a content-based SHA256 address, using a self-hosted Apache Solr container (with Tika and Solr Cell plugins) for indexing and search (but not file storage)
+- Index binary file (PDF, MP3, etc.) metadata, including a content-based SHA256 address, using a self-hosted Apache Solr container (with Tika and Solr Cell plugins) for indexing and search (but **not** file content storage)
 - For storage, upload each indexed file to an Amazon S3 bucket with the SHA256 content address as part of its bucket key.
 - Search results will include the SHA256 content address, enabling retrieval of the file content of any search result from the S3 bucket.
+
+![screenshot](screenshot.png)
 
 ## References
 
